@@ -1,14 +1,11 @@
 const http = require('http');
 
 const server = http.createServer();
-const Express = require('express');
 
-const app = Express();
-
-app.get('/', (req, res) => {
-    res.json({
-        up: true
-    });
+server.on('request', (req, res) => {
+    res.setHeader('content-type', 'application-json');
+    res.write("{'up': true}");
+    res.end();
 });
 
-app.listen(3000);
+server.listen(3000);
